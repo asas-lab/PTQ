@@ -34,8 +34,6 @@ def compute_prelpexity(model_id: str, testset: str) -> tuple:
   return (ppls, avg)
 
 
-
-
 parser = argparse.ArgumentParser(description = "compute preplexity")
 parser.add_argument("model", type=str, help="huggingface model id")
 parser.add_argument("testset", type=str, help="path to testset in CSV file fromat with the data in the first col")
@@ -50,6 +48,10 @@ def main():
     df = pd.read_csv(testset_path)
     compute_prelpexity(args.model, df[df.columns[0]])
 
+    ##TODOS
+    if args.hf_dataset:
+       pass
+       
 
 if __name__ == '__main__':
     main()
