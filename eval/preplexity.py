@@ -2,12 +2,12 @@ import transformers, torch, datasets, numpy
 import pandas as pd
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset
-from typing import List 
+from typing import Tuple
 import argparse, os
 
 
 
-def compute_prelpexity(model_id: str, testset: str) -> tuple:
+def compute_prelpexity(model_id: str, testset: str) -> Tuple:
 
   """
     Input:
@@ -38,6 +38,7 @@ parser = argparse.ArgumentParser(description = "compute preplexity")
 parser.add_argument("model", type=str, help="huggingface model id")
 parser.add_argument("testset", type=str, help="path to testset in CSV file fromat with the data in the first col")
 parser.add_argument("--hf_dataset", type=str, help="hugging face dataset id")
+parser.add_argument("--hf_dataset_split", type=str, help="hugging face dataset id")
 
 args = parser.parse_args()
 
@@ -50,7 +51,9 @@ def main():
 
     ##TODOS
     if args.hf_dataset:
-       pass
+      dataset = load_dataset(args.hf_dataset, split=args.hf_dataset_split)
+
+      compute_prelpexity(args.model, dataset)
        
 
 if __name__ == '__main__':

@@ -1,0 +1,5 @@
+!pip install --quiet bitsandbytes
+!pip install --quiet git+https://github.com/huggingface/transformers.git # Install latest version of transformers
+!pip install --quiet -U accelerate
+!pip install -q -U git+https://github.com/huggingface/peft.git
+!pip install datasets evaluate
